@@ -13,8 +13,8 @@ const Todolist: React.FC<props> = ({ todos, setTodos }) => {
         <div className="relative w-full flex-col gap-12 bg-white py-10">
           <section className="mx-auto flex max-w-screen-xl px-6 relative w-full flex-col gap-12 overflow-hidden bg-white py-0">
             <div className="grid container relative mx-auto items-center gap-6 px-4 lg:grid-cols-2">
-              <div className="grid grid-cols-2 gap-6 flex flex-col text-blue-500 text-bold">
-                <div className ="size-fit text-blue-500">
+              <div className="grid-cols-2 gap-6 flex flex-col text-blue-500 text-bold">
+                <div className ="size-fit text-blue-500 text-wrap">
                   Active tasks
                   {todos
                     .filter((todo) => !todo.isdone)
@@ -27,7 +27,7 @@ const Todolist: React.FC<props> = ({ todos, setTodos }) => {
                       />
                     ))}
                 </div>
-                <div className ="size-fit text-red-500 ">
+                <div className ="size-fit text-red-500 text-wrap">
                   Completed tasks
                   {todos
                     .filter((todo) => todo.isdone)
