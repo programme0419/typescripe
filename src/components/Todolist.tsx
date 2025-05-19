@@ -8,35 +8,41 @@ interface props {
 
 const Todolist: React.FC<props> = ({ todos, setTodos }) => {
   return (
-    <div className="container mx-auto my-8 w-full max-w-3xl rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
-      <div className="flex flex-col gap-y-3">
-        <span className=" text-lg font-medium text-blue-500 dark:text-gray-400">
-          Active tasks
-        </span>
-        <div className="flex flex-col gap-y-3">
-        {todos.filter((todo) => !todo.isdone).map((todo) => (
-          <Singletodo
-            todo={todo}
-            key={todo.id}
-            todos={todos}
-            setTodos={setTodos}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-y-3">
-        <span className="text-lg font-medium text-red-500 dark:text-gray-400">
-          completed tasks
-        </span>
-        <div className="flex flex-col gap-y-3">
-        {todos.filter((todo) => todo.isdone).map((todo) => (
-          <Singletodo
-            todo={todo}
-            key={todo.id}
-            todos={todos}
-            setTodos={setTodos}
-            />
-          ))}
+    <div className="relative flex min-h-[86.1vh] flex-col justify-between overflow-x-clip md:overflow-y-visible">
+      <div className="isolate flex flex-col gap-12 bf-zinc-50">
+        <div className="relative w-full flex-col gap-12 bg-white py-10">
+          <section className="mx-auto flex max-w-screen-xl px-6 relative w-full flex-col gap-12 overflow-hidden bg-white py-0">
+            <div className="grid container relative mx-auto items-center gap-6 px-4 lg:grid-cols-2">
+              <div className="grid grid-cols-2 gap-6 flex flex-col text-blue-500 text-bold">
+                <div className ="size-fit text-blue-500">
+                  Active tasks
+                  {todos
+                    .filter((todo) => !todo.isdone)
+                    .map((todo) => (
+                      <Singletodo
+                        todo={todo}
+                        key={todo.id}
+                        todos={todos}
+                        setTodos={setTodos}
+                      />
+                    ))}
+                </div>
+                <div className ="size-fit text-red-500 ">
+                  Completed tasks
+                  {todos
+                    .filter((todo) => todo.isdone)
+                    .map((todo) => (
+                      <Singletodo
+                        todo={todo}
+                        key={todo.id}
+                        todos={todos}
+                        setTodos={setTodos}
+                      />
+                    ))}
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>

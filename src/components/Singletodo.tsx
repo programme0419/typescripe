@@ -37,21 +37,21 @@ const Singletodo: React.FC<Props> = ({ todo, todos, setTodos }) => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   return (
-    <form className="flex-align-center gap-x-4" onSubmit={(e) => handleEdit(e, todo.id)}>
+    <div
+      className="flex flex-col gap-6  text-lg font-medium text-black-500 dark:text-gray-400"
+      onSubmit={(e) => handleEdit(e, todo.id)}
+    >
       {edit ? (
         <input
           value={editTodo}
           ref={inputRef}
           onChange={(e) => setEditTodo(e.target.value)}
-          className="w-full rounded-xl p-4 text-black outline-none focus:ring-0 border border-gray-300 focus:border-gray-400 transition-all duration-300"
         />
-      ) : todo.isdone ? (
-        <s className="w-full rounded-xl p-4 text-black outline-none focus:ring-0 border border-gray-300 focus:border-gray-400 transition-all duration-300">{todo.todo}</s>
       ) : (
-        <span className="w-full rounded-xl p-4 text-black outline-none focus:ring-0 border border-gray-300 focus:border-gray-400 transition-all duration-300">{todo.todo}</span>
+        todo.todo
       )}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <span
+      <div className="flex items-center justify-center gap-5">
+        <div
           className="cursor-pointer"
           onClick={() => {
             if (!edit && !todo.isdone) {
@@ -60,15 +60,15 @@ const Singletodo: React.FC<Props> = ({ todo, todos, setTodos }) => {
           }}
         >
           <FaEdit />
-        </span>
-        <span className="cursor-pointer" onClick={() => handleDelete(todo.id)}>
+        </div>
+        <div className="cursor-pointer" onClick={() => handleDelete(todo.id)}>
           <RiDeleteBin3Fill />
-        </span>
-        <span className="cursor-pointer" onClick={() => handleDone(todo.id)}>
+        </div>
+        <div className="cursor-pointer" onClick={() => handleDone(todo.id)}>
           <IoCheckmarkDoneSharp />
-        </span>
+        </div>
       </div>
-    </form>
+    </div>
   );
 };
 
